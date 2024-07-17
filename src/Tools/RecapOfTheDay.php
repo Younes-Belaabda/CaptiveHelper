@@ -1,20 +1,50 @@
 <?php
 
+
     namespace App\Tools;
+    use App\Core\Session;
 
     class RecapOfTheDay {
         /**
          * @class RecapOfTheDay
          * @description In our call center we need to know everyday for each agent how many contract signed . 
          */
-        public $type = null;
-        public $calc_contracts = [];
+
+        public static $types = [];
+        public static $centers = [];
+
+        public $center = null;
+        public $type   = null;
         public $contracts = [];
 
-        public function __construct($text){
-            $text      = $this->cleanup_text($text);
-            $contracts = $this->explode_newline($text);
+        public function __construct($text , $type , $center){
+            $this->type = $type;
+            $this->center = $center;
+
+            $this->addType($type);
+            $this->addCenter($center);
+
+            $text       = $this->cleanup_text($text);
+            $contracts  = $this->explode_newline($text);
             $this->implode_contracts($contracts);
+        }
+
+        public function addType($type){
+            if(!in_array($type , self::$types , true))
+                self::$types[] = $type;
+        }
+
+        public function addCenter($center){
+            if(!in_array($center , self::$centers , true))
+                self::$centers[] = $center;
+        }
+
+        public function getTypes(){
+            return self::$types;
+        }
+
+        public function getCenters(){
+            return self::$centers;
         }
 
         public function cleanup_text($text){
@@ -38,7 +68,46 @@
             }
         }
 
-        public function calculate(){
-
+        public function get_names(){
+            $names = [];
+            foreach($this->contracts as $contract){
+                foreach($contract as $row){
+                    if(preg_match('/TO /' , $row)){
+                        $names[] = preg_replace('/TO /' , '' , $row);
+                    }
+                }
+            }
+            return $names;
         }
+
+        public function calculate(){
+            $calc_contracts = [];
+            $names = $this->get_names();
+            foreach($names as $name){
+                if(!array_key_exists($name , $calc_contracts)){
+                    $calc_contracts[$name] = 1;
+                }else{
+                    $calc_contracts[$name] = $calc_contracts[$name] + 1;
+                }
+            }
+            return $calc_contracts;
+        }
+
+        public function save(){
+            $calc_contracts = [];
+            $contracts = $this->calculate();
+            foreach($contracts as $key => $value){
+                $calc_contracts[] = [
+                    'name'   => $key,
+                    'center' => $this->center,
+                    'types'  => [
+                        $this->type => $value
+                    ]
+                ];
+            }
+            // Save To Session
+            Session::set('contracts' , $calc_contracts);
+            return Session::get('contracts');
+        }
+        
     }
