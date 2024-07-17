@@ -1,5 +1,7 @@
 <?php
 
+use App\Database\DB;
+
 
     namespace App\Tools;
     use App\Core\Session;
@@ -97,17 +99,22 @@
             $calc_contracts = [];
             $contracts = $this->calculate();
             foreach($contracts as $key => $value){
-                $calc_contracts[] = [
-                    'name'   => $key,
-                    'center' => $this->center,
-                    'types'  => [
-                        $this->type => $value
-                    ]
-                ];
+                $values = DB::exist('RecapOfTheDay' , 
+                ['agent' , 'type' , 'center'] , [
+                    "'$key'",
+                    "'$this->type'",
+                    "'$this->center'"
+                ]);
+                if(!$values)
+                    DB::insert('RecapOfTheDay' , 
+                        ['agent' , 'type' , 'center' , 'count'],
+                        "'$key' , '$this->type' , '$this->center' , $value"
+                    );
+                else
+                    DB::update('RecapOfTheDay' , $values[0]['id'] ,
+                        ['count'],
+                        "$value"
+                    );
             }
-            // Save To Session
-            Session::set('contracts' , $calc_contracts);
-            return Session::get('contracts');
         }
-        
     }
