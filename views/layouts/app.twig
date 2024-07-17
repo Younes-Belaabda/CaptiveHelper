@@ -8,7 +8,16 @@
 </head>
 <body>
     <div id="my-app">
-        <div id="app-aside"></div>
+        <div id="app-aside">
+            <ul id="app-aside-nav">
+                <li>
+                    <a class="nav-link" href="/">Dashboard</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/recap-of-the-day">Recap Of The Day</a>
+                </li>
+            </ul>
+        </div>
         <div id="app-content">
             {% block content %}{% endblock %}
         </div>

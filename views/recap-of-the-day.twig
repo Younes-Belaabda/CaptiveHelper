@@ -1,5 +1,46 @@
 {% extends "layouts/app.twig" %}
 
 {% block content %}
-    Recap Of The Day
+    <div class="container">
+        <form class="form" action="/recapoftheday/store" method="post">
+            <div class="form-block">
+                <label for="center" class="form-label">Center</label>
+                <select name="center" id="center" class="form-select">
+                    <option value="captive">Captive</option>
+                    <option value="saisons">Saisons</option>
+                </select>
+            </div>
+            <div class="form-block">
+                <label for="type" class="form-label">Type</label>
+                <input name="type" type="text" class="form-text">
+            </div>
+            <div class="form-block">
+                <label for="text" class="form-label">Text</label>
+                <textarea  name="text" id="text" class="form-textarea"></textarea>
+            </div>
+            <button class="form-submit">save</button>
+        </form>
+    </div>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Agent</th>
+                    <th>Type</th>
+                    <th>Center</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recap in recaps %}
+                <tr>
+                    <td>{{ recap['agent'] }}</td>
+                    <td>{{ recap['type'] }}</td>
+                    <td>{{ recap['center'] }}</td>
+                    <td>{{ recap['count'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

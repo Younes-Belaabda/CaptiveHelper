@@ -9,6 +9,8 @@
 
     $router->map('GET', '/', [App\Controllers\HomepageController::class , 'index']);
     $router->map('GET', '/recap-of-the-day', 
-    [App\Controllers\TaskController::class , 'index']);
+    [App\Controllers\RecapOfTheDayController::class , 'index']);
+    $router->map('POST', '/recapoftheday/store', 
+    [App\Controllers\RecapOfTheDayController::class , 'store']);
 
     \App\Core\Route::match($router);

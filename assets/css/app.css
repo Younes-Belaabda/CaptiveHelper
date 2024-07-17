@@ -1,0 +1,132 @@
+@font-face {
+    font-family: 'BebasNeue';
+    src: url('./../fonts/BebasNeue.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'BebasNeue';
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    background-color: #F3FBFF;
+}
+
+label , input , select , a , button , textarea {
+    font-size: 1.5em;
+    color: #091922;
+}
+
+#my-app {
+    display: flex;
+}
+
+#app-aside {
+    background-color: #1294E3;
+    width: 300px;
+    height: 100vh;
+    position: fixed;
+}
+
+#app-content {
+    width: 100vw;
+    padding: 25px;
+    padding-left: 320px;
+}
+
+#app-aside-nav {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 25px 15px;
+}
+
+#app-aside-nav .nav-link {
+    text-decoration: none;
+    background-color: white;
+    padding: 10px 25px;
+    display: block;
+    color: #066099;
+}
+
+/* Containers */
+.container {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+/* Forms */
+.form {
+    border: 2.5px solid #091922;
+    padding: 20px;
+    width: 100%;
+}
+
+.form-block {
+    display: grid;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.form-text {
+    background-color: #f9f9f9;
+    border: 2.5px solid #091922;
+}
+
+.form-select {
+    background-color: #f9f9f9;
+    border: 2.5px solid #091922;
+}
+
+.form-textarea {
+    background-color: #f9f9f9;
+    border: 2.5px solid #091922;
+    min-height: 300px;
+    resize: none;
+}
+
+.form-submit {
+    min-width: 150px;
+    padding: 5px;
+    border: 2px solid #091922;
+    background-color: #1294E3;
+    color: white;
+    cursor: pointer;
+}
+
+/* Tables */
+.table {
+    width: 100%;
+    border-spacing: 0;
+    border-right: 2.5px solid #091922;
+    border-bottom: 2.5px solid #091922;
+}
+
+.table th ,
+.table td {
+    font-size: 1.5em;
+    text-align: left;
+    padding: 5px;
+}
+
+.table thead th {
+    border: 2.5px solid #091922;
+    border-bottom: 0;
+    border-right: 0;
+    background-color: #f9f9f9;
+}
+
+.table tbody td {
+    border: 2.5px solid #091922;
+    border-bottom: 0;
+    border-right: 0;
+    background-color: #f9f9f9;
+}
