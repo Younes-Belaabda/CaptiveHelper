@@ -1,9 +1,7 @@
 <?php
 
-use App\Database\DB;
-
-
     namespace App\Tools;
+    use App\Database\DB;
     use App\Core\Session;
 
     class RecapOfTheDay {
