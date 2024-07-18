@@ -54,6 +54,7 @@ label , input , select , a , button , textarea {
     padding: 10px 25px;
     display: block;
     color: #066099;
+    box-shadow: 4px 4px rgb(88, 88, 88);
 }
 
 /* Containers */
@@ -68,6 +69,7 @@ label , input , select , a , button , textarea {
     border: 2.5px solid #091922;
     padding: 20px;
     width: 100%;
+    box-shadow: 2px 2px #1294E3;
 }
 
 .form-block {
@@ -93,21 +95,13 @@ label , input , select , a , button , textarea {
     resize: none;
 }
 
-.form-submit {
-    min-width: 150px;
-    padding: 5px;
-    border: 2px solid #091922;
-    background-color: #1294E3;
-    color: white;
-    cursor: pointer;
-}
-
 /* Tables */
 .table {
     width: 100%;
     border-spacing: 0;
     border-right: 2.5px solid #091922;
     border-bottom: 2.5px solid #091922;
+    box-shadow: 2px 2px #1294E3;
 }
 
 .table th ,
@@ -129,4 +123,55 @@ label , input , select , a , button , textarea {
     border-bottom: 0;
     border-right: 0;
     background-color: #f9f9f9;
+}
+
+/* Buttons */
+.button {
+    min-width: 150px;
+    padding: 5px;
+    border: 2px solid #091922;
+    /* background-color: #1294E3; */
+    color: black;
+    cursor: pointer;
+    box-shadow: 2px 2px #1294E3;
+}
+
+.button-submit {
+    background-color: #1294E3;
+    color: white;
+    box-shadow: 2px 2px #01131f;
+}
+
+.button-delete {
+    background-color: #e31c12;
+    color: white;
+}
+
+.button-export {
+    background-color: rgba(17, 203, 7, 0.973);
+    color: white;
+}
+
+/* Margins */
+.mb-1 {
+    margin-bottom: 10px;
+}
+
+/* Widgets */
+.link-box a {
+    display: block;
+    height: 150px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1294E3;
+    text-decoration: none;
+    color: white;
+    box-shadow: 2px 2px #034693;
+    transition: all .5s ease-in-out;
+}
+
+.link-box a:hover {
+    background-color: #033a42;
 }

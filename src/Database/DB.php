@@ -17,6 +17,11 @@
             }
         }
 
+        public static function pdo(){
+            self::connect();
+            return self::$db;
+        }
+
         public static function exist($table , $columns , $values){
             self::connect();
             $query = "SELECT id FROM $table WHERE ";

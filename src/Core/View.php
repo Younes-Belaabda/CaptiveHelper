@@ -13,8 +13,15 @@
                 self::$twig   = new \Twig\Environment(self::$loader, [
                     // 'cache' => '/path/to/compilation_cache',
                 ]);
+
                 $function = new \Twig\TwigFunction('asset', function ($name) {
                     return $_ENV['ASSET_URL'] . $name;
+                });
+                self::$twig->addFunction($function);
+
+                $function = new \Twig\TwigFunction('dataTypesPerAgent', function ($agent , $type) {
+                    $data = \App\Services\RecapOfTheDayQuery::dataTypesPerAgent($agent , $type);
+                    return $data;
                 });
                 self::$twig->addFunction($function);
             }
